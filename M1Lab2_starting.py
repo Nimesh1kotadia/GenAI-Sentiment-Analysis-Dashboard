@@ -11,7 +11,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Initialize Azure OpenAI client
-API_KEY = os.getenv("SPARK_API_KEY")
+API_KEY = st.secrets["SPARK_API_KEY"]
+# API_KEY = os.getenv("SPARK_API_KEY")
 API_VERSION = "2024-02-01"
 ENDPOINT = "https://sparkuatapi.spglobal.com/v1/sparkassist"
 DEPLOYMENT = "gpt-4o-2024-08-06"
@@ -24,12 +25,9 @@ client = AzureOpenAI(
 
 
 # Helper function to get dataset path
+
 def get_dataset_path():
-    # Get the current script directory
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    # Construct the path to the CSV file
-    csv_path = os.path.join(current_dir, "..", "..", "..", "data", "customer_reviews.csv")
-    return csv_path
+    return os.path.join("data", "customer_reviews.csv")
 
 
 # Function to get sentiment using GenAI
@@ -132,4 +130,5 @@ if "df" in st.session_state:
             showlegend=False
         )
         st.plotly_chart(fig, use_container_width=True)
+
 
