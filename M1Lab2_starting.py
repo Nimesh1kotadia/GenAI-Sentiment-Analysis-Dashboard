@@ -10,15 +10,6 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-import requests
-
-try:
-    r = requests.get("https://sparkuatapi.spglobal.com", timeout=5)
-    st.write(r.status_code)
-except Exception as e:
-    st.error(e)
-
-
 # Initialize Azure OpenAI client
 API_KEY = st.secrets["SPARK_API_KEY"]
 # API_KEY = os.getenv("SPARK_API_KEY")
@@ -138,6 +129,7 @@ if "df" in st.session_state:
             showlegend=False
         )
         st.plotly_chart(fig, use_container_width=True)
+
 
 
 
