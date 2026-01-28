@@ -27,8 +27,7 @@ client = AzureOpenAI(
 # Helper function to get dataset path
 
 def get_dataset_path():
-    return os.path.join("data", "customer_reviews.csv")
-
+    return "customer_reviews.csv"
 
 # Function to get sentiment using GenAI
 @st.cache_data
@@ -130,5 +129,6 @@ if "df" in st.session_state:
             showlegend=False
         )
         st.plotly_chart(fig, use_container_width=True)
+
 
 
